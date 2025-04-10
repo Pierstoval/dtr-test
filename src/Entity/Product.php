@@ -2,24 +2,27 @@
 
 namespace App\Entity;
 
-use App\Grid\ProductGrid;
+use App\Admin\Grid\ProductGrid;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Resource\Metadata\AsResource;
-use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata as Sylius;
 use Sylius\Resource\Model\ResourceInterface;
 
-#[AsResource(
+#[Sylius\AsResource(
     section: 'admin',
     templatesDir: '@SyliusAdminUi/crud',
     routePrefix: '/admin',
     operations: [
-        new Index(
-            grid: ProductGrid::class,
-        ),
+        new Sylius\Index(grid: ProductGrid::class),
+        new Sylius\Create(),
+        new Sylius\Update(),
+        new Sylius\Delete(),
+        new Sylius\Show(),
+        new Sylius\BulkDelete(),
+        new Sylius\BulkUpdate(),
     ],
 )]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]

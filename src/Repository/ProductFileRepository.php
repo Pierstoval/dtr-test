@@ -9,7 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<ProductFile>
  */
-class ProductFileRepository extends ServiceEntityRepository
+final class ProductFileRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
